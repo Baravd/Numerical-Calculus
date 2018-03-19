@@ -16,11 +16,12 @@ m=length(xnodes);
 f=aitkenTabel(xnodes,ynodes, x);
 epsilon=0.001;
 
-for i=2:n
+for i=2:m
     if(abs(f(i,i)-f(i-1,i-1))<epsilon)
         f(i,i)
         return;
     end
+    fprintf('not enough values');
 end
 function rez =aitkenTabel(xnodes,ynodes, x)
     m=length(ynodes);
