@@ -6,7 +6,18 @@ n=length(ynodes);
 
 rez = dividedDiff(xnodes, ynodes, n);
 
-lmf = newtonForm(xnodes, ynodes, 2.5)
+lmf = newtonForm(xnodes, ynodes, 2.5);
+plot(xnodes,ynodes,'+');
+hold on;
+plotx=1:0.01:5;
+newtonPoly=zeros(1,length(plotx));
+for i=1:length(plotx)
+   newtonPoly(i) = newtonForm(xnodes, ynodes, plotx(i));
+   
+end
+plot(plotx,newtonPoly);
+legend('punctele ','newton form');
+title('LMF using newton form (lab4 ex1b)');
 
 function rez= newtonForm(xnodes, ynodes, x)
     sum = ynodes(1);

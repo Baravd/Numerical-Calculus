@@ -1,12 +1,30 @@
 %ex1
-xnodes=1:1:5;
-ynodes=[22 ,23 ,25 ,30 ,28]; 
-x0=2.5;
-n=length(ynodes);
+xnodes=linspace(0,6,13);
+ynodes=exp((sin(xnodes)));
+n=length(xnodes);
 
 rez = dividedDiff(xnodes, ynodes, n);
 
-lmf = newtonForm(xnodes, ynodes, 2.5)
+plot(xnodes,ynodes,'*');
+hold on;
+
+
+
+plotx=0:0.01:6;
+ploty = exp((sin(plotx)));
+plot(plotx,ploty); 
+hold on;
+
+
+newtonPoly=zeros(1,length(plotx));
+for i=1:length(plotx)
+   newtonPoly(i) = newtonForm(xnodes, ynodes, plotx(i));
+   
+end
+%pause;
+plot(plotx,newtonPoly);
+legend('punctele ','functia data','newton form');
+title('LMF using newton form (lab4 ex2)');
 
 function rez= newtonForm(xnodes, ynodes, x)
     sum = ynodes(1);
