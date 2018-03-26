@@ -10,7 +10,7 @@ doubleDistances = doubleElements(distances);
 doubleSpeeds = doubleElements(speeds);
 
 divFirstRow = dividedDiff(doubleTimes,doubleDistances,doubleSpeeds,n);
-Hmf = newtonForm(doubleTimes, doubleDistances,divFirstRow, t);
+Hmf = hermiteForm(doubleTimes, doubleDistances,divFirstRow, t);
 
 %ex2
 times = [1,2];
@@ -23,7 +23,7 @@ n=2*length(times);
 t=1.5;
 
 divFirstRow = dividedDiff(doubleTimes,doubleDistances,doubleSpeeds,n);
-Hmf = newtonForm(doubleTimes, doubleDistances,divFirstRow, t);
+Hmf = hermiteForm(doubleTimes, doubleDistances,divFirstRow, t);
 
 %ex3
 
@@ -48,11 +48,13 @@ hmfRez=zeros(1,length(atimes));
 divFirstRow = dividedDiff(doubleTimes,doubleDistances,doubleSpeeds,n);
 
 for i=1:length(a_times)
-    Hmf = newtonForm(doubleTimes, doubleDistances,divFirstRow, a_times(i));
+    Hmf = hermiteForm(doubleTimes, doubleDistances,divFirstRow, a_times(i));
     hmfRez(i)=Hmf;
 end
-pause;
+%pause;
 plot(a_times,hmfRez);
+title('Hermite interpolation');
+legend('Points','Function','Hermite aproximation');
 
 
 
@@ -92,7 +94,7 @@ function rez = dividedDiff(x,y,speed,n)
     rez = tabel(1,2:n); %first row in table
 end
 
-function rez= newtonForm(xnodes, ynodes,firstRow, x)
+function rez= hermiteForm(xnodes, ynodes,firstRow, x)
     sum = ynodes(1);
     m = length(xnodes)-1;
     
