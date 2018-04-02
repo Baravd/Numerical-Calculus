@@ -50,14 +50,19 @@ end
 
 %plot(points, y);
 
-legend('points','aprox a','aprox b','lagrange');
+%legend('points','aprox a','aprox b','lagrange');
 
 
 %ex3
 
 x=-3:0.4:3;
 y=sin(x);
-plot(x,y);
+
+% plot(x,y,'*');
+% hold on;
+
+points=-3:0.01:3;
+% plot(points, sin(points));
 
 aux1= polyfit(x,y,4);
 y=zeros(1, length(points));
@@ -65,8 +70,23 @@ for i=1:length(points)
     y(i) = polyval(aux1,points(i));
 
 end
-plot(points, y);
+% plot(points, y);
+% legend('points','function','polyval');
+
+
+%ex4
+[x,y] = ginput(10);
+x= 3.*x;
+y = 5.*y;
+plot(x,y,'*');
 hold on;
+
+aux1= polyfit(x,y,2);
+x1=linspace(0,3,100);
+y = polyval(aux1,x1);
+
+
+plot(x1,y);
 
 
 
