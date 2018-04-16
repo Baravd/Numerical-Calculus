@@ -74,3 +74,52 @@ xk2=a+pas:pas:b;
 simpsonRepeated=((b-a)./(6.*n)).*(f(a)+f(b)+4.*sum(f((xk1+xk2)/2))+2.*sum(f(xk)))
 erf=(2/sqrt(pi)).*simpsonRepeated
 
+%ex7
+f=@(x,y) exp(y/x);
+a=0.1;
+b=0.5;
+c=0.01;
+d=0.25;
+n=10;
+pas=(b-a)/(2*n);
+j1=0;
+j2=0;
+j3=0;
+m=10;
+
+for i=0:2*n
+    x=a+i*pas;
+  
+    h1=(d-c)/(2*m);
+    k1=f(x,c)+f(x,d);
+    k2=0;
+    k3=0;
+    for j=1:2*(m-1)
+        y=c+j*h1;
+        z=f(x,y);
+        if(mod(j,2)==0)
+            k2=k2+z;
+        else
+            k3=k3+z;
+        end
+        
+    end
+    
+    l=(k1+2*k2+4*k3)*h1/3;
+
+    if ((i==0 || i==2*n))
+        j1=j1+1;
+    else
+        if(mod(i,2)==0)
+            j2=j2+1;
+        else
+            j3=j3+1;
+        end
+    end
+    
+
+end
+
+J=(j1+2*j2+4*j3)*(pas/3)
+
+
